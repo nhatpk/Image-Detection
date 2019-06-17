@@ -1,0 +1,95 @@
+﻿{% extends "layout.html" %}
+
+
+{% block content %}
+
+<!--////////////////////////////////////Header-->
+<header>
+    <div class="wrap-header zerogrid">
+        <div class="row">
+            <div id="menu">
+                <nav>
+                    <div class="wrap-nav">
+                        <ul>
+                            <li class="active"><a href="{{url_for('home')}}">Home</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!--////////////////////////////////////Container-->
+<section id="container">
+    <div class="wrap-container zerogrid">
+        <div id="main-content" class="">
+            <div class="">
+                <div class="movie">
+                    <div class="row type">
+                        <div class="title">
+                            <center><h3>PREDICT IMAGE CATEGORY:</h3></center>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <form action="{{url_for('upload_image')}}" class="form" method="POST" enctype="multipart/form-data">
+                            <div class="col-1-2">
+                                <div class="wrap-col">
+                                    <div class="post">
+                                        <label>Upload image:</label>
+                                        <input type="file" name="photo">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1-2">
+                                <div class="wrap-col">
+                                    <div class="post">
+                                        <label>Image Url:</label>
+                                        <input type="text" id="imageUrl" name="imageUrl">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1-2">
+                                <div class="wrap-col">
+                                    <div class="post">
+                                        <button class="glyphicon glyphicon-search" aria-hidden="true">Predict</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="movie">
+                    <div class="row type">
+                        <div class="title">
+                            <center><h3>RESULT:</h3></center>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div>
+                            {% if prediction %}
+                            <center>
+                                <h4>The uploaded image</h4>
+                                <div class="view">
+                                    <img class="thumb" src="{{imagePath}}" />
+                                </div>
+                                <div class="clear"></div>
+                                <br />
+                                <h4>is <font color="gold">{{prediction}}</font></h4>
+                                <br />
+                                <h4>with accuracy score = <font color="blue">{{score}} %</font></h4>
+                            </center>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
