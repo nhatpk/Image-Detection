@@ -3121,3 +3121,6 @@ venv.bak/
 /Image-Detection/Image_Detection/static/training_ds.rar
 /Image-Detection/Image_Detection/static/dataset
 /Image-Detection/Image_Detection/static/input
+/Image-Detection/Image_Detection/static/models/image_detection_label.pickle
+/Image-Detection/Image_Detection/static/models/image_detection_2.pickle
+/Image-Detection/Image_Detection/static/models/image_detection.model

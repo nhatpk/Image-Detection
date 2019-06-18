@@ -55,14 +55,14 @@ def upload_image():
                 filename = secure_filename(file.filename)
                 file.save(os.path.join('Image_Detection/static/input', filename))
                 imagePath = '/static/input/' + filename
-                prediction, score = predictCNN('Image_Detection' + imagePath)
+                prediction, score = predictVGG('Image_Detection' + imagePath)
         else:
             r = requests.get(imageUrl)
             filename = secure_filename(imageUrl)
             f = open(os.path.join('Image_Detection/static/input', filename), "wb")
             f.write(r.content)
             imagePath = '/static/input/' + filename
-            prediction, score = predictCNN('Image_Detection' + imagePath)
+            prediction, score = predictVGG('Image_Detection' + imagePath)
 
     return render_template(
         'home.html',

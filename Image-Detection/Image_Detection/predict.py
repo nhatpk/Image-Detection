@@ -48,11 +48,11 @@ def predictCNN(pathToFile):
     # load the model and label binarizer
     #print("[INFO] loading network and label binarizer...")
     K.clear_session()
-    pklModel = load_model("Image_Detection/static/models/simple_nn.model") #load_model(args["model"])
+    model = load_model("Image_Detection/static/models/simple_nn.model") #load_model(args["model"])
     lb = pickle.loads(open("Image_Detection/static/models/simple_nn_lb.pickle", "rb").read()) #pickle.loads(open(args["label_bin"], "rb").read())
 
     # make a prediction on the image
-    preds = pklModel.predict(image)
+    preds = model.predict(image)
 
     # find the class label index with the largest corresponding
     # probability
@@ -85,7 +85,7 @@ def predictVGG(pathToFile):
     # load the input image and resize it to the target spatial dimensions
     image = cv2.imread(pathToFile)#cv2.imread("Image_Detection/static/input/cat.jpg") #cv2.imread(args["image"])
     #output = image.copy()
-    image = cv2.resize(image, (64, 64))
+    image = cv2.resize(image, (128, 128))
 
     # scale the pixel values to [0, 1]
     image = image.astype("float") / 255.0
@@ -107,11 +107,11 @@ def predictVGG(pathToFile):
     # load the model and label binarizer
     #print("[INFO] loading network and label binarizer...")
     K.clear_session()
-    pklModel = load_model("Image_Detection/static/models/smallvggnet.model") #load_model(args["model"])
-    lb = pickle.loads(open("Image_Detection/static/models/smallvggnet_lb.pickle", "rb").read()) #pickle.loads(open(args["label_bin"], "rb").read())
+    model = load_model("Image_Detection/static/models/image_detection.model") #load_model(args["model"])
+    lb = pickle.loads(open("Image_Detection/static/models/image_detection_label.pickle", "rb").read()) #pickle.loads(open(args["label_bin"], "rb").read())
 
     # make a prediction on the image
-    preds = pklModel.predict(image)
+    preds = model.predict(image)
 
     # find the class label index with the largest corresponding
     # probability

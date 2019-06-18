@@ -53,14 +53,6 @@
     <Content Include="Image_Detection\static\content\responsive.css" />
     <Content Include="Image_Detection\static\content\style.css" />
     <Content Include="Image_Detection\static\content\zerogrid.css" />
-    <Content Include="Image_Detection\static\input\panda3.jpg" />
-    <Content Include="Image_Detection\static\input\cat.jpg" />
-    <Content Include="Image_Detection\static\input\cat1.jpg" />
-    <Content Include="Image_Detection\static\input\cat2.jpg" />
-    <Content Include="Image_Detection\static\input\dog.jpg" />
-    <Content Include="Image_Detection\static\input\panda.jpg" />
-    <Content Include="Image_Detection\static\input\panda1.jpg" />
-    <Content Include="Image_Detection\static\input\panda2.jpg" />
     <Content Include="Image_Detection\static\models\simple_nn.model" />
     <Content Include="Image_Detection\static\models\simple_nn_lb.pickle" />
     <Content Include="Image_Detection\static\models\simple_nn_plot.png" />
