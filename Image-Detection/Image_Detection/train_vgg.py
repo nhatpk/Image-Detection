@@ -23,14 +23,10 @@ import os
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-d", "--dataset", required=True,
-	help="path to input dataset of images")
-ap.add_argument("-m", "--model", required=True,
-	help="path to output trained model")
-ap.add_argument("-l", "--label-bin", required=True,
-	help="path to output label binarizer")
-ap.add_argument("-p", "--plot", required=True,
-	help="path to output accuracy/loss plot")
+ap.add_argument("-d", "--dataset", required=True, help="path to input dataset of images")
+ap.add_argument("-m", "--model", required=True, help="path to output trained model")
+ap.add_argument("-l", "--label-bin", required=True,	help="path to output label binarizer")
+ap.add_argument("-p", "--plot", required=True, help="path to output accuracy/loss plot")
 args = vars(ap.parse_args())
 
 # initialize the data and labels
@@ -63,8 +59,7 @@ labels = np.array(labels)
 
 # partition the data into training and testing splits using 75% of
 # the data for training and the remaining 25% for testing
-(trainX, testX, trainY, testY) = train_test_split(data,
-	labels, test_size=0.25, random_state=42)
+(trainX, testX, trainY, testY) = train_test_split(data,	labels, test_size=0.25, random_state=42)
 
 # convert the labels from integers to vectors (for 2-class, binary
 # classification you should use Keras' to_categorical function
@@ -80,8 +75,7 @@ aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
 	horizontal_flip=True, fill_mode="nearest")
 
 # initialize our VGG-like Convolutional Neural Network
-model = SmallVGGNet.build(width=64, height=64, depth=3,
-	classes=len(lb.classes_))
+model = SmallVGGNet.build(width=64, height=64, depth=3,	classes=len(lb.classes_))
 
 # initialize our initial learning rate, # of epochs to train for,
 # and batch size
@@ -93,8 +87,7 @@ BS = 32
 # binary_crossentropy for 2-class classification)
 print("[INFO] training network...")
 opt = SGD(lr=INIT_LR, decay=INIT_LR / EPOCHS)
-model.compile(loss="categorical_crossentropy", optimizer=opt,
-	metrics=["accuracy"])
+model.compile(loss="categorical_crossentropy", optimizer=opt, metrics=["accuracy"])
 
 # train the network
 H = model.fit_generator(aug.flow(trainX, trainY, batch_size=BS),
@@ -104,8 +97,7 @@ H = model.fit_generator(aug.flow(trainX, trainY, batch_size=BS),
 # evaluate the network
 print("[INFO] evaluating network...")
 predictions = model.predict(testX, batch_size=32)
-print(classification_report(testY.argmax(axis=1),
-	predictions.argmax(axis=1), target_names=lb.classes_))
+print(classification_report(testY.argmax(axis=1), predictions.argmax(axis=1), target_names=lb.classes_))
 
 # plot the training loss and accuracy
 N = np.arange(0, EPOCHS)
